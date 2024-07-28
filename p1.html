@@ -3,18 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program 1</title>
+    <title>Program 2</title>
 </head>
 <body>
     <h1>Program 1</h1>
     <pre>
         <code>
-            // Your code here
-            #include <stdio.h>
+            //input format 
+            //0 :for the i=j
+            //9999:for no edge
+            //floyds and warshals both are one
+            #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            void floyds(int wt[100][100], int n, int D[100][100]) {
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                        D[i][j] = wt[i][j];
+                    }
+                }
+            
+                for (int k = 0; k < n; k++) {
+                    for (int i = 0; i < n; i++) {
+                        for (int j = 0; j < n; j++) {
+                            if (D[i][j] > D[i][k] + D[k][j]) {
+                                D[i][j] = D[i][k] + D[k][j];
+                            }
+                        }
+                    }
+                }
+                
+                printf("Shortest path matrix\n");
+                
+                 for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                        printf("%d ",D[i][j]);
+                     
+                    }
+                    printf("\n");
+                }
+            }
+            
             int main() {
-                printf("Hello, java!");
+                int wt[100][100], D[100][100];
+                int n;
+            
+                printf("Enter the number of vertices: ");
+                scanf("%d", &n);
+            
+                printf("Enter the weight matrix (enter 0 for no direct path):\n");
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                        scanf("%d", &wt[i][j]);
+                        if (i!=j && wt[i][j] == 0) {  
+                            wt[i][j] = 99999; 
+                        }
+                    }
+                }
+            
+                floyds(wt, n, D);
+            
+              
+            
                 return 0;
             }
+            //Warshals
+            //it takes the binary input only,unlike the floyds which takes the weighted graph
+            #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+
+void warshals(int adj[100][100], int n, int R[100][100]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            R[i][j] = adj[i][j];
+        }
+    }
+
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+            R[i][j]=R[i][j]||R[i][k]&&R[k][j];
+                
+            }
+        }
+    }
+    
+    printf("Transitice closure matrix\n");
+    
+     for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+        	printf("%d ",R[i][j]);
+         
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int adj[100][100], R[100][100];
+    int n;
+
+    printf("Enter the number of vertices: ");
+    scanf("%d", &n);
+
+    printf("Enter the adjacency matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &adj[i][j]);
+           
+        }
+    }
+
+    warshals(adj, n, R);
+
+  
+
+    return 0;
+}
         </code>
     </pre>
     <a href="index.html">Back to Home</a>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subset Sum Program</title>
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+        code {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Subset Sum Program</h1>
+    <pre>
+        <code>
+            #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+
+            static int total_nodes;
+
+            void printValues(int A[], int size) {
+                for (int i = 0; i &lt; size; i++) {
+                    printf("%*d", 5, A[i]);
+                }
+                printf("\n");
+            }
+
+            void subset_sum(int s[], int t[], int s_size, int t_size, int sum, int ite, int const target_sum) {
+                total_nodes++;
+                if (target_sum == sum) {
+                    printValues(t, t_size);
+                    subset_sum(s, t, s_size, t_size - 1, sum - s[ite], ite + 1, target_sum);
+                    return;
+                } else {
+                    for (int i = ite; i &lt; s_size; i++) {
+                        t[t_size] = s[i];
+                        subset_sum(s, t, s_size, t_size + 1, sum + s[i], i + 1, target_sum);
+                    }
+                }
+            }
+
+            void generateSubsets(int s[], int size, int target_sum) {
+                int* tuplet_vector = (int*)malloc(size * sizeof(int));
+                subset_sum(s, tuplet_vector, size, 0, 0, 0, target_sum);
+                free(tuplet_vector);
+            }
+
+            int main() {
+                int set[] = { 5, 6, 12, 54, 2, 20, 15 };
+                int size = sizeof(set) / sizeof(set[0]);
+                printf("The set is ");
+                printValues(set, size);
+                generateSubsets(set, size, 25);
+                printf("Total Nodes generated %d\n", total_nodes);
+                return 0;
+            }
+        </code>
+    </pre>
+</body>
+</html>
