@@ -6,92 +6,71 @@
     <title>Program 1</title>
 </head>
 <body>
-    <h1>Program 1</h1>
+  
     <pre>
         <code>
-            #include &lt;stdio.h&gt;
-            #include &lt;stdbool.h&gt;
-                
-                #define N 8 
-                
-                void printSolution(int board[N][N]) {
-                    for (int i = 0; i < N; i++) {
-                        for (int j = 0; j < N; j++)
-                            printf("%d ", board[i][j]);
-                        printf("\n");
-                    }
-                }
-                
-                bool isSafe(int board[N][N], int row, int col) {
-                    int i, j;
-                
-                    //on left
-                    for (i = 0; i < col; i++)
-                        if (board[row][i])
-                            return false;
-                
-                    //upper left diagoanl
-                    for (i = row, j = col; i >= 0 && j >= 0; i--, j--)
-                        if (board[i][j])
-                            return false;
-                
-                     //lower left diagonal
-                    for (i = row, j = col; j >= 0 && i < N; i++, j--)
-                        if (board[i][j])
-                            return false;
-                
-                    return true;
-                }
-                
-                
-                bool solveNQUtil(int board[N][N], int col) {
-                      //base condition
-                    if (col >= N)
-                        return true;
-                
-                
-                    for (int i = 0; i < N; i++) {
-                      
-                        if (isSafe(board, i, col)) {
-                   
-                            board[i][col] = 1;
-                
-                            if (solveNQUtil(board, col + 1))
-                                return true;
-                
-                
-                            board[i][col] = 0; //backtracking
-                        }
-                    }
-                
-                
-                    return false;
-                }
-                
-                // Main function to solve N Queen problem
-                
-                
-                int main() {
-                
-                    int board[N][N] = { {0, 0, 0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0, 0, 0} };
-                
-                    if (solveNQUtil(board, 0) == false) {
-                        printf("Solution does not exist");
-                        return false;
-                    }
-                
-                    printSolution(board);
-                
-                    return 0;
-                }
-                
+            \documentclass{article}
+            \usepackage{tikz}
+            
+            \begin{document}
+            \begin{center}
+            \Large{\textbf{Hierarchy of Linux distributions}}
+            \end{center}
+            \begin{figure}[h]
+            
+            \begin{tikzpicture} [every node/.style = {shape=rectangle, rounded corners, draw, align=center}]
+            \path [draw,thick,-]
+            node (root)[red] {GNU/Linux}[sibling distance=45mm, level distance=25mm]
+            
+            child {node [cyan] {Debian}
+            [sibling distance=25mm, level distance=25mm]
+            child { node [cyan] {Ubuntu} }
+            child { node [cyan] {Linux Mint} }
+            %child { node {Elementary} }
+            }
+            child {node [magenta] {RedHat}
+            [sibling distance=25mm, level distance=25mm]
+            child { node [magenta] {Fedora} }
+            child { node [magenta] {OpenSuse} }
+            }
+            child {node [blue] {Arch}
+            [sibling distance=25mm, level distance=25mm]
+            child { node [blue]{Manjaro} }
+            child { node [blue]{EndeavourOS} }};
+            \end{tikzpicture}
+            \caption{GNU/Linux Operating System Family}
+            \end{figure}
+            \pagebreak
+            \begin{center}
+            \Large{\textbf{SUV Cars}}
+            \end{center}
+            \begin{figure}[h]
+            \centering
+            \begin{tikzpicture} [every node/.style = {shape=rectangle, rounded corners, draw, align=center}]
+            \path [draw,thick,-]
+            [grow=-45]
+            node (root)[red] {SUV}
+            [sibling distance=45mm, level distance=25mm]
+            child {node [cyan] {Tata}
+            [sibling distance=25mm, level distance=25mm]
+            child { node [cyan] {Nexon} }
+            child { node [cyan] {Punch} }
+            % child { node {Elementary} }
+            }
+            child {node [magenta] {Volkswagen}
+            [sibling distance=25mm, level distance=25mm]
+            child { node [magenta] {Taigun} }
+            child { node [magenta] {Virtus} }
+            }
+            child {node [blue] {Maruti}
+            [sibling distance=25mm, level distance=25mm]
+            child { node [blue]{Brezza} }
+            child { node [blue]{Vitara} }
+            };
+            \end{tikzpicture}
+            \caption{Car Brands Hierarchy}
+            \end{figure}
+            \end{document}
                 
         </code>
     </pre>

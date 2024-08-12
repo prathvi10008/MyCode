@@ -6,120 +6,56 @@
     <title>Program 2</title>
 </head>
 <body>
-    <h1>Program 1</h1>
+ 
     <pre>
         <code>
-            //input format 
-            //0 :for the i=j
-            //9999:for no edge
-            //floyds and warshals both are one
-            #include &lt;stdio.h&gt;
-            #include &lt;stdlib.h&gt;
-            
-            void floyds(int wt[100][100], int n, int D[100][100]) {
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        D[i][j] = wt[i][j];
-                    }
-                }
-            
-                for (int k = 0; k < n; k++) {
-                    for (int i = 0; i < n; i++) {
-                        for (int j = 0; j < n; j++) {
-                            if (D[i][j] > D[i][k] + D[k][j]) {
-                                D[i][j] = D[i][k] + D[k][j];
-                            }
-                        }
-                    }
-                }
+            %\multirow{<number of rows>}{<width>}{<cell content>} width is *(auto)
+                %\multicolumn{<number of columns>}{<column formatting>}{<content>}
                 
-                printf("Shortest path matrix\n");
                 
-                 for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        printf("%d ",D[i][j]);
-                     
-                    }
-                    printf("\n");
-                }
-            }
-            
-            int main() {
-                int wt[100][100], D[100][100];
-                int n;
-            
-                printf("Enter the number of vertices: ");
-                scanf("%d", &n);
-            
-                printf("Enter the weight matrix (enter 0 for no direct path):\n");
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        scanf("%d", &wt[i][j]);
-                        if (i!=j && wt[i][j] == 0) {  
-                            wt[i][j] = 99999; 
-                        }
-                    }
-                }
-            
-                floyds(wt, n, D);
-            
-              
-            
-                return 0;
-            }
-            //Warshals
-            //it takes the binary input only,unlike the floyds which takes the weighted graph
-            #include &lt;stdio.h&gt;
-            #include &lt;stdlib.h&gt;
-
-void warshals(int adj[100][100], int n, int R[100][100]) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            R[i][j] = adj[i][j];
-        }
-    }
-
-    for (int k = 0; k < n; k++) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-            R[i][j]=R[i][j]||R[i][k]&&R[k][j];
+                \documentclass{article}
+                \usepackage{multirow}
                 
-            }
-        }
-    }
-    
-    printf("Transitice closure matrix\n");
-    
-     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-        	printf("%d ",R[i][j]);
-         
-        }
-        printf("\n");
-    }
-}
+                \begin{document}
+                \title{Experiment No: 5}
+                \maketitle % necessary
+                
+                \begin{table}[h] %table is constracted from the top to bottom
+                
+                \begin{tabular}{|l|l|l|lll|} %tabular envirinment starts here
+                \hline %firet horizontal line of the table
+                % hline will add the new line too
+                
+                
+                \multicolumn{1}{|c|}{\multirow{2}{*}{S. No}} &
+                \multicolumn{1}{|c|}{\multirow{2}{*}{USN}} &
+                \multicolumn{1}{|c|}{\multirow{2}{*}{Student Name}} &
+                \multicolumn{3}{|c|}{Marks} \\
+                \cline{4-6}% Draws a horizontal line across the 4th to 6th columns
+                \multicolumn{1}{|c|}{}& %no content is added for the fiirst 3 columns so
+                \multicolumn{1}{|c|}{}&%u can use the c| only since it inserts the verticle line
+                \multicolumn{1}{|c|}{} &
+                \multicolumn{1}{|c|}{Subject 1} &
+                \multicolumn{1}{|c|}{Subject 2} &
+                \multicolumn{1}{|c|}{Subject 3} \\
+                \hline 
+                
+                1 &4XX22XX001  & Name 1   &
+                \multicolumn{1}{|c|}{89} &  % for first 3 data no need of foramting
+                \multicolumn{1}{|c|}{60} &90  \\
+                \hline
+                2 & 4XX22XX002 & Name 2 &
+                \multicolumn{1}{|c|}{78}        &
+                \multicolumn{1}{|c|}{45} & 98 \\
+                \hline 
+                3 & 4XX22XX003 & Name 3 &
+                \multicolumn{1}{|c|}{67}&
+                \multicolumn{1}{|c|}{55}        & 59 \\
+                \hline
+                \end{tabular}
+                \end{table}
+                \end{document}
 
-int main() {
-    int adj[100][100], R[100][100];
-    int n;
-
-    printf("Enter the number of vertices: ");
-    scanf("%d", &n);
-
-    printf("Enter the adjacency matrix:\n");
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            scanf("%d", &adj[i][j]);
-           
-        }
-    }
-
-    warshals(adj, n, R);
-
-  
-
-    return 0;
-}
         </code>
     </pre>
     <a href="index.html">Back to Home</a>

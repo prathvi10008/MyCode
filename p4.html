@@ -7,62 +7,34 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Kruskal's Algorithm Implementation</h1>
+
     <pre><code>
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
+        \documentclass{article}
+\usepackage[english]{babel}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[theorem]
 
-int i, j, a, b, u, v, n, ne = 1;
-int min, mincost = 0, cost[9][9], parent[9];
+\begin{document}
+\section{Introduction}
+Theorems can be easily defined:
+\begin{theorem}
+Let  f be a function whose derivative exists in every point,then f is a continuous function
+\end{theorem}
+\begin{theorem}
+\label{pythagorean}
+Pythagorean theorem This is a theorem about right angled triangles and can be summarized in the next equation \[x^2+y^2=z^2\]
+\end{theorem}
+And a consequence of theorem \ref{pythagorean} is the statement in the next corollary
+\begin{corollary}
+There's no right triangle whose side measure is 3cm,4cm and 6cm
+\end{corollary}
+You can reference theorem such as \ref{pythagorean} when a label is assigned
+\begin{lemma}
+Given two line segments whose lengths are a and b respectively there is a real number r such that b=ra
+\end{lemma}
+\end{document}
 
-int find(int i) {
-    while (parent[i])
-        i = parent[i];
-    return i; // return the root
-}
-
-int uni(int i, int j) { // performs the union of 2 sets
-    if (i != j) { // if roots are different then only perform union
-        parent[j] = i; // make the common root for both the sets
-        return 1; // success
-    }
-    return 0; // else failure
-}
-
-void main() {
-    printf("\n\n\tImplementation of Kruskal's algorithm\n\n");
-    printf("\nEnter the no. of vertices\n");
-    scanf("%d", &n);
-    printf("\nEnter the cost adjacency matrix\n");
-    for (i = 1; i <= n; i++) {
-        for (j = 1; j <= n; j++) {
-            scanf("%d", &cost[i][j]);
-            if (cost[i][j] == 0)
-                cost[i][j] = 999;
-        }
-    }
-    printf("\nThe edges of Minimum Cost Spanning Tree are\n\n");
-    while (ne < n) { // each spanning tree has n-1 edges so this will run n-1 times
-        for (i = 1, min = 999; i <= n; i++) {
-            for (j = 1; j <= n; j++) {
-                if (cost[i][j] < min) {
-                    min = cost[i][j];
-                    a = u = i;
-                    b = v = j;
-                }
-            }
-        }
-
-        u = find(u);
-        v = find(v);
-        if (uni(u, v)) {
-            printf("\n%d edge (%d,%d) = %d\n", ne++, a, b, min);
-            mincost += min;
-        }
-        cost[a][b] = cost[b][a] = 999; // set the vertex as visited
-    }
-    printf("\n\tMinimum cost = %d\n", mincost);
-}
 </code></pre>
 </body>
 </html>
